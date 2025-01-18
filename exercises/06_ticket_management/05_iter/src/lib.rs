@@ -13,6 +13,27 @@ pub struct Ticket {
     status: Status,
 }
 
+impl TicketStore {
+    pub fn iter(&self) -> impl Iterator<Item = &Ticket> {
+        self.tickets.iter()
+    }
+}
+
+impl Ticket {
+    pub fn title(&self) -> &TicketTitle {
+        &self.title
+    }
+
+    pub fn description(&self) -> &TicketDescription {
+        &self.description
+    }
+
+    pub fn status(&self) -> Status {
+        self.status
+    }
+    
+}
+
 #[derive(Clone, Debug, Copy, PartialEq)]
 pub enum Status {
     ToDo,
