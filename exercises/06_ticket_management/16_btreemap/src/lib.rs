@@ -4,6 +4,7 @@
 //  Implement additional traits on `TicketId` if needed.
 
 use std::collections::BTreeMap;
+use std::collections::btree_map::Values;
 use std::ops::{Index, IndexMut};
 use ticket_fields::{TicketDescription, TicketTitle};
 
@@ -98,7 +99,7 @@ impl IndexMut<&TicketId> for TicketStore {
 
 impl<'a> IntoIterator for &'a TicketStore {
     type Item = &'a Ticket;
-    type IntoIter = std::collections::btree_map::Values<'a, TicketId, Ticket>;
+    type IntoIter = Values<'a, TicketId, Ticket>;
 
     fn into_iter(self) -> Self::IntoIter {
         self.tickets.values()
